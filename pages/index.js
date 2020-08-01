@@ -1,3 +1,4 @@
+import { useWindowScroll } from "react-use";
 import Head from "next/head";
 import styles from "../styles/home.module.css";
 import { getSortedPostsData } from "../lib/posts";
@@ -21,12 +22,6 @@ const HomeHead = () => (
     <title>{TITLE}</title>
     <meta name="description" content="Receitas Low Carb e muito mais...." />
     <meta
-      property="og:image"
-      content={`https://og-image.now.sh/${encodeURI(
-        "Faz Bem"
-      )}.png?theme=light&md=0&fontSize=75px&images=https%3A%2F%2Fassets.vercel.com%2Fimage%2Fupload%2Ffront%2Fassets%2Fdesign%2Fnextjs-black-logo.svg`}
-    />
-    <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0"
     ></meta>
@@ -36,18 +31,31 @@ const HomeHead = () => (
 );
 
 export default function Home({ allPostsData }) {
-  // const { data, error } = useSWR("/api/hello", fetcher);
+  const imageRef = React.useRef(null);
+  const { x, y } = useWindowScroll();
+  console.log("x", x, "y", y);
+  const scrollRef = React.useRef(null);
+  const fazbem =
+    (scrollRef.current && scrollRef.current.getBoundingClientRect()) || {};
+  console.log("fazbem ", fazbem.y);
+  const shouldBeFixed = fazbem.y && fazbem.y <= 10;
+  const isImageOut =
+    imageRef.current && imageRef.current.getBoundingClientRect().y < -600;
   return (
-    <div className={styles.container}>
+    <>
       <HomeHead />
       <header className={styles.header}>
+        {/* <div className={styles.banner}>
+          <img ref={imageRef} src="/images/panqueca-lowcarb.jpg" />
+        </div> */}
         <div className={styles.logo}>
           <img src="/images/logo.png" />
-          <div>Faz Bem</div>
         </div>
-        <div>Faz Bem</div>
+        <div ref={scrollRef} className={styles.fazbem}>
+          Faz Bem
+        </div>
       </header>
       <main className={styles.content}>Main</main>
-    </div>
+    </>
   );
 }

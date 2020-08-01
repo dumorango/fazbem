@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Gochi+Hand&display=swap");
+
 html,
 body {
   padding: 0;
@@ -27,5 +29,5 @@ img {
 }
 
 div {
-  border: 1px solid black;
+  /* border: 1px solid black; */
 }
