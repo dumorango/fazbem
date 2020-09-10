@@ -24,7 +24,7 @@ function Recipe(props) {
   } = props;
 
   const TITLE = `Faz Bem - ${fields.nome}`;
-  const fotoGrande = fields.fotoGrande?.fields.file;
+  const fotoGrande = fields.fotoGrande?.fields?.file;
 
   return (
     <>
@@ -88,7 +88,7 @@ function Recipe(props) {
 }
 
 export async function getStaticPaths() {
-  const entries = await getContentfulClient(false).getEntries();
+  const entries = await getContentfulClient().getEntries();
   const paths = entries.items.map(({ sys: { id } }) => `/receitas/${id}`);
   return {
     paths,

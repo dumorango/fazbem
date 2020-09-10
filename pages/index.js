@@ -7,7 +7,7 @@ export async function getStaticProps({ preview }) {
   const recipes = entries.items.map(({ sys: { id }, fields }) => ({
     id,
     name: fields.nome,
-    imageUrl: fields.fotoPequena.fields.file.url,
+    imageUrl: fields.fotoPequena?.fields?.file?.url ?? null,
   }));
   return {
     props: {
@@ -61,7 +61,7 @@ export default function Home({ recipes }) {
                     onClick={handleClick(id)}
                   >
                     <div className="flex w-56 h-64 flex-grow ">
-                      <img src={imageUrl} />
+                      {imageUrl ? <img src={imageUrl} /> : null}
                     </div>
                     <div className="flex w-56 h-16 text-center justify-center items-center bg-center font-sans">
                       {name}
