@@ -76,9 +76,10 @@ function Recipe(props) {
                   </div>
                   <div className="text-xl">
                     {documentToReactComponents(fields.modoDePreparo)}
-                  </div>
+                  </div>                  
                 </div>
-              </div>
+                { fields.shopping_links ? <div className="flex my-8 " dangerouslySetInnerHTML={{ __html: fields.shopping_links }} /> : null }
+              </div>              
             </div>
           </main>
         </div>
