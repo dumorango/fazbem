@@ -51,17 +51,17 @@ function Recipe(props) {
           </header>
           <main>
             <div className="flex flex-col">
-              <div className="flex flex-col font-sans text-5xl justify-start my-8">
-                <div>{fields.nome}</div>
+              <div className="flex flex-col font-sans text-3xl md:text-5xl justify-center md:justify-start my-8">
+                <div className="text-center md:text-left">{fields.nome}</div>
               </div>
               {fotoGrande ? (
                 <div className="flex flex-grow my-8">
                   <img title={fotoGrande.title} src={fotoGrande.url} />
                 </div>
               ) : null}
-              <div className="flex flex-row">
-                <div className="flex flex-col w-1/4">
-                  <div className="text-4xl font-display my-8 text-center">
+              <div className="flex flex-col md:flex-row">
+                <div className="flex flex-col md:w-1/4 lg:1/4 sm:1">
+                  <div className="text-4xl font-display my-8 text-center justify-center">
                     Ingredientes
                   </div>
                   {fields.ingredientes?.map((ingrediente, i) => (
@@ -76,9 +76,10 @@ function Recipe(props) {
                   </div>
                   <div className="text-xl">
                     {documentToReactComponents(fields.modoDePreparo)}
-                  </div>
+                  </div>                  
                 </div>
-              </div>
+                { fields.shopping_links ? <div className="flex flex-col my-8 " dangerouslySetInnerHTML={{ __html: fields.shopping_links }} /> : null }
+              </div>              
             </div>
           </main>
         </div>
