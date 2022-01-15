@@ -13,7 +13,7 @@
     "contentful": "^7.14.6",
     "date-fns": "^2.15.0",
     "gray-matter": "^4.0.2",
-    "marked": "^1.1.1",
+    "marked": "^4.0.10",
     "next": "^9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1",
